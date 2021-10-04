@@ -25,6 +25,7 @@ export const login = info => async dispatch => {
   dispatch(startLoading("Login"));
   try {
     const res = await axios.post(`${prefixe}/api/user/login`, info);
+    
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -40,6 +41,7 @@ export const login = info => async dispatch => {
 export const register = info => async dispatch => {
   dispatch(clearError());
   dispatch(startLoading("Register"));
+  
   try {
     const res = await axios.post(`${prefixe}/api/user/register`, info);
     dispatch({
@@ -57,16 +59,19 @@ export const register = info => async dispatch => {
 export const getProfile = () => async dispatch => {
   dispatch(clearError());
   dispatch(startLoading("Get my profile"));
+  console.log(localStorage.getItem("token"));
   try {
     setToken();
-    const { data } = await axios.get(`${prefixe}/api/user/getprofile`);
+    const { data } = await axios.get(`${prefixe}/api/user/getprofil`, {
+      headers: { "auth-token": localStorage.getItem("token") },
+    });
     dispatch({
       type: GET_PROFILE_SUCCESS,
       payload: data,
     });
   } catch (err) {
     dispatch(stopLoading());
-    dispatch(setError(err.response.data.errors));
+    dispatch(setError(err.response?.data?.errors || err.message));
   }
 };
 

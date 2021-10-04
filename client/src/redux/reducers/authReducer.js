@@ -8,6 +8,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT,
+  REGISTER_SUCCESS,
 } from "../actions/authTypes";
 
 const initState = {
@@ -26,6 +27,7 @@ const authReducer = (state = initState, { type, payload }) => {
         ...state,
         isLoading: true,
       };
+    case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
       localStorage.setItem("isAuth", true);
@@ -42,14 +44,14 @@ const authReducer = (state = initState, { type, payload }) => {
         ...state,
         user: payload,
       };
-      case LOGOUT:
-        localStorage.clear()
-        return {
-            ...state,
-            isAuth: false,
-            user: null,
-            token: null,
-        }
+    case LOGOUT:
+      localStorage.clear();
+      return {
+        ...state,
+        isAuth: false,
+        user: null,
+        token: null,
+      };
     case GET_PROFILE_FAILED:
     case LOGIN_FAILED:
       return {

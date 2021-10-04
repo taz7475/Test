@@ -1,3 +1,5 @@
+/** @format */
+
 @import url("https://fonts.googleapis.com/css?family=Lora:400,400i,700");
 body {
   display: flex;
@@ -5,9 +7,10 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
+  padding: 0;
   font-family: Lora, sans-serif;
   background-image: URL("https://ak.picdn.net/shutterstock/videos/1061018233/preview/stock-footage-woman-using-tablet-shopping-online-buying-clothes-browsing-online-store-e-commerce-on-mobile.webm");
-  
+  background-repeat: no-repeat;
 }
 
 p {
@@ -22,6 +25,8 @@ p {
 #burger-toggle:checked ~ .menu {
   opacity: 1;
   visibility: visible;
+  z-index: 10;
+  
 }
 #burger-toggle:checked ~ .menu .menu-nav-link span div,
 #burger-toggle:checked ~ .menu img,
@@ -59,7 +64,7 @@ p {
   position: fixed;
   top: 5vh;
   left: 5vw;
-  z-index: 100;
+  z-index: 3;
   display: block;
   width: var(--burger-menu-radius);
   height: var(--burger-menu-radius);
@@ -116,7 +121,7 @@ p {
   justify-content: center;
   align-items: center;
   background: #1a1e23;
-  opacity: 0;
+  opacity: 70%;
   overflow-x: hidden;
   visibility: hidden;
   transition: 0.3s;
@@ -141,12 +146,10 @@ p {
 }
 .menu-nav-item {
   flex: 1;
-
 }
 .menu-nav-item:hover {
-    color: rgb(5, 5, 5);
-    
-  }
+  color: rgb(5, 5, 5);
+}
 .menu-nav-link {
   position: relative;
   display: inline-flex;

@@ -1,13 +1,12 @@
 /** @format */
 
-import "./men.css";
+import "./accessories.css";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
-const Men = ({ imageUrl, name, description, price, productId }) => {
-
-const auth = useSelector(state => state.auth)
+const Accessories = ({ imageUrl, name, description, price, productId }) => {
+  const auth = useSelector(state => state.auth)
 const history = useHistory();
 
 const Alert =() => {
@@ -37,11 +36,6 @@ const Alert =() => {
       })
     }})
   }
-  
-
-
-
-
   return (
     <div className="product">
       <img style={{height:"500px", width:"350px" , padding:"20px" }} src={imageUrl} alt="fdfdf" />
@@ -51,6 +45,7 @@ const Alert =() => {
         <p className="info__description">{description}</p>
 
         <p className="info__price">{price} $</p>
+
         { auth.isAuth==true ?  <Link
           to={{
             pathname: `/ShoppingCart/${productId}`,
@@ -65,10 +60,9 @@ const Alert =() => {
         >
           View
         </button>    }
-      
       </div>
     </div>
   );
 };
 
-export default Men;
+export default Accessories;

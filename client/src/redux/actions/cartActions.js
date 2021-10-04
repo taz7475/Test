@@ -1,8 +1,9 @@
-import * as actionTypes from "../constants/cartConstants";
+import * as actionTypes from '../constants/cartConctants'
 import axios from "axios";
+import { prefixe } from '../../helpers/constant';
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${id}`);
+  const { data } = await axios.get(`${prefixe}/api/Products/${id}`);
 
   dispatch({
     type: actionTypes.ADD_TO_CART,
@@ -15,6 +16,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
       qty,
     },
   });
+  console.log(data)
 
   localStorage.setItem("cart", JSON.stringify(getState().cart.cartItems));
 };
@@ -27,4 +29,3 @@ export const removeFromCart = (id) => (dispatch, getState) => {
 
   localStorage.setItem("cart", JSON.stringify(getState().cart.cartItems));
 };
-

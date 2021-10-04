@@ -17,8 +17,14 @@ const userSchema= mongoose.Schema({
         type: Date, 
         default:  moment(Date.now()).tz('Europe/Paris').format('LLLL')
     },
-    image:{
+    adress:{
         type:String,
+    },
+    country:{
+        type:String,
+    },
+    code_zip:{
+        type:Number,
     },
     role:{
         type:String,

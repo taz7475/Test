@@ -1,11 +1,11 @@
 require("dotenv").config({ path: "./config/.env" });
 
-const productData = require("./data/products");
-const connectDB = require("./config/db");
+const productData = require("./data/Products");
+
+const dbConnect = require("./dbConnect");
 const Product = require("./models/Product");
 
-connectDB();
-
+dbConnect()
 const importData = async () => {
   try {
     await Product.deleteMany({});
@@ -22,3 +22,4 @@ const importData = async () => {
 };
 
 importData();
+
